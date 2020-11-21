@@ -1,24 +1,54 @@
 # cowrywise-test
 
-## Project setup
-```
+> This application is a mini clone of unsplash.com and it was done as an assessment for a frontend developer role.
+The application was developed in Vue.js
+
+<p align="center">
+  <br>
+  <img src="https://res.cloudinary.com/dafsch2zs/image/upload/v1605982658/Screenshot_2020-11-21_at_19.13.36_a5opme.png" width="600" />
+  <br>
+</p>
+
+## Build Setup
+
+``` bash
+# install dependencies
 yarn install
-```
 
-### Compiles and hot-reloads for development
-```
+# Compiles and hot-reloads for development
 yarn serve
-```
 
-### Compiles and minifies for production
-```
+# Compiles and minifies for production
 yarn build
-```
 
-### Lints and fixes files
-```
+# Lints and fixes files
 yarn lint
+
+# Customize configuration
+See Configuration Reference.
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Application Overview
+- The basic idea of the app is to fetch images from the unsplash api and display them in a grid.
+#### App description
+I decided to have two main compponents.  
+  ##### 1. A search component (SearchSection.vue) 
+  ##### 2. An image display component (ImageGrid.vue)
+  - The api request is made on form submit in the Search component (which is done by the 'enter' click event and it gets back an array of the image data. This data is then sent to the image display component. The loading state is also communicated to the "Image-grid component" from the "search component" to display skeleton loaders while the loading status is true.
+  
+  ##### 3. The skeleton loader (SkeletonLoader.vue)
+ - It's the component rendered to the grid view when images are being fetched. It's imported directly in the ImageGrid.vue component.
+It's a component without any functionality. It's works as a loader and the loading effect is done using css animations.
+
+##### 4. The modal component (ImageModal.vue)
+- It's the modal component that pops up when an image in the grid is clicked. It's shows the image at maximum resolution alongside the author and the location. It can be toggled off (closed) by clicking anywhere on the screen.
+This component is directly imported into the ImageGrid.vue component. When an image on the grid is clicked, it passed it's ID into the function that troggers the modal and it's this information that the modal uses to get the image, author and location specific to the image clicked.
+
+
+### Things to note
+1. Some images don't return locations and for such images, I use "Somewhere on earth" as the location when rendering the views
+2. The images displayed on the grid are given some contrast using css filter for accessibility reason so that the text would be easy to read. However, on hover the filter is removed and on click the images opens in a modal at full resolution.
+3. There event bus is in the services folder. I decided to use an event bus since only two events were being communicated and It seemed quite overkill to have used Vuex.
+4. Also in the services folder, the unsplash.js is where I have defined my async functions for (1) rendering random images on mount and (2) for searching images based on the search parameter. The functions are then imported into the SearchSection.vue component.
+5. On app load, random images are fecthed and used to populate the grid initally. Updates are then made by search queries.
+6. Axios is the http cient used in this application.
