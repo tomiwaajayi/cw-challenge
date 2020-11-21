@@ -60,6 +60,7 @@ export default {
 
       let that = this; //For this to be scoped in the function below
       searchPhotos(param).then((res) => {
+        console.log(res.results);
         that.unsplashData = res.results;
         eventBus.$emit("unsplashData", that.unsplashData);
         that.loading = false;

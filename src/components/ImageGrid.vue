@@ -18,7 +18,7 @@
           @click="toggleModal(data.id)"
         >
           <img
-            :src="data.urls.regular"
+            :src="data.urls.small"
             :alt="data.alt_description"
             class="data-image"
           />
