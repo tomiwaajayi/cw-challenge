@@ -1,5 +1,5 @@
 <template>
-  <section class="search">
+  <section class="search-component">
     <!-- Search Form  -->
     <form class="form" @submit.prevent="getPhotos">
       <!-- Search Icon -->
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+// IMPORTS
 import { searchPhotos, getRandomPhotos } from "@/services/unsplash.js";
 import { eventBus } from "@/services/EventBus.js";
 export default {
@@ -82,7 +83,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.search {
+.search-component {
   width: 100%;
   height: 35vh;
   background: #dde2e9;
@@ -90,6 +91,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .form {
     width: 80%;
     position: relative;

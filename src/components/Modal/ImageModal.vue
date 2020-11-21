@@ -153,7 +153,7 @@ export default {
   }
 }
 
-/* Modal Animation */
+/* Modal transition */
 .modal-fade-enter,
 .modal-fade-leave-active {
   opacity: 0;

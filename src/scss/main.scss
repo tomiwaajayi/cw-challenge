@@ -1,3 +1,15 @@
 // variables
 $primary-color: #253858;
 $secondary-color: #6d7b91;
+
+// BAsic reset
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+// global font-declaration
+body {
+	font-family: 'Quicksand', sans-serif;
+}

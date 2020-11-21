@@ -31,13 +31,12 @@ export const searchPhotos = async (param) => {
 };
 
 // Get random Photos
-export const getRandomPhotos = async (param) => {
+export const getRandomPhotos = async () => {
 	try {
 		const res = await axios.get(getRandomPhotosEndpoint, {
 			params: {
 				client_id: accessKey,
 				count: 8,
-				...param,
 			},
 		});
 

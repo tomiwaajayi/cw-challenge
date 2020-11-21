@@ -1,5 +1,5 @@
 <template>
-  <div class="image-grid container">
+  <div class="image-grid">
     <!-- Skeleton loader if data is being fetched (loading = true) -->
     <div class="grid-wrapper" v-if="loading">
       <div class="image" v-for="num in 8" :key="num">
@@ -106,7 +106,7 @@ export default {
 
 // Styles
 <style lang="scss">
-.container {
+.image-grid {
   max-width: 1150px;
   margin: 0 auto;
   margin-top: -2.8rem;
@@ -131,6 +131,7 @@ export default {
     }
   }
 
+  // Css for image text
   .bottom-left {
     position: absolute;
     bottom: 20px;
@@ -144,6 +145,7 @@ export default {
     font-size: 0.8rem;
   }
 
+  // Css for text displayed when no result is found
   .no-result {
     margin: auto;
     text-align: center;
@@ -155,6 +157,7 @@ export default {
     color: $secondary-color;
   }
 
+  // Grid display on screens larger than md
   @media (min-width: 961px) {
     .grid-wrapper {
       display: grid;
