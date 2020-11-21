@@ -1,32 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <search-section></search-section>
+    <image-grid></image-grid>
   </div>
 </template>
 
+<script>
+// Imports
+import SearchSection from "@/components/SearchSection.vue";
+import ImageGrid from "@/components/ImageGrid.vue";
+
+// Config
+export default {
+  name: "app",
+  components: {
+    SearchSection,
+    ImageGrid,
+  },
+};
+</script>
+
+
+// Styles
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+body {
+  font-family: "Quicksand", sans-serif;
 }
 </style>
