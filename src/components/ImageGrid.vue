@@ -1,13 +1,15 @@
 <template>
   <div class="image-grid container">
-    <!-- Skeleton loader if data is being fetched -->
+    <!-- Skeleton loader if data is being fetched (loading = true) -->
     <div class="grid-wrapper" v-if="loading">
       <div class="image" v-for="num in 8" :key="num">
         <skeleton-loader></skeleton-loader>
       </div>
     </div>
 
+    <!-- Show this div as soon as loading = false -->
     <div v-if="!loading">
+      <!-- If the returned data array > 0 i.e if at least one image is returned -->
       <div class="grid-wrapper" v-if="unsplashData.length > 0">
         <div
           class="image"
@@ -30,6 +32,8 @@
           </div>
         </div>
       </div>
+
+      <!-- Else, if the returned data arrar is empty, i.e "no images found", display this text -->
       <div v-else class="no-result">
         <p>
           <span> Ooops ! </span><br />
@@ -37,7 +41,8 @@
         </p>
       </div>
     </div>
-    <!--  -->
+
+    <!-- Image Modal  -->
     <image-modal v-show="isModalVisible" @close="closeModal" :imgData="imgData">
     </image-modal>
   </div>
@@ -117,6 +122,12 @@ export default {
       object-fit: cover;
       width: 100%;
       height: 100%;
+      filter: contrast(50%);
+      transition: all 0.5s;
+    }
+
+    img:hover {
+      filter: contrast(100%);
     }
   }
 

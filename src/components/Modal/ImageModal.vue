@@ -28,7 +28,11 @@
         <!-- Modal Footer -->
         <footer class="modal-footer">
           <h3 class="img-author">{{ imgData.imgAuthor }}</h3>
-          <p class="img-location">{{ imgData.imgLocation }}</p>
+          <p class="img-location">
+            {{
+              imgData.imgLocation ? imgData.imgLocation : "Somewhere on earth"
+            }}
+          </p>
         </footer>
       </div>
     </div>
