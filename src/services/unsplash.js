@@ -8,13 +8,35 @@ const apiEndpoint = 'https://api.unsplash.com/';
 
 // Unsplash Search endpoint
 const searchPhotoEndpoint = `${apiEndpoint}search/photos`;
+// Unsplash Get random photos endpoint
+const getRandomPhotosEndpoint = `${apiEndpoint}photos/random`;
 
+// Search photos
 export const searchPhotos = async (param) => {
 	try {
 		const res = await axios.get(searchPhotoEndpoint, {
 			params: {
 				client_id: accessKey,
 				per_page: 8,
+				...param,
+			},
+		});
+
+		if (res.status == 200) return res.data;
+		else return null;
+	} catch (err) {
+		console.error(err);
+		return null;
+	}
+};
+
+// Get random Photos
+export const getRandomPhotos = async (param) => {
+	try {
+		const res = await axios.get(getRandomPhotosEndpoint, {
+			params: {
+				client_id: accessKey,
+				count: 8,
 				...param,
 			},
 		});

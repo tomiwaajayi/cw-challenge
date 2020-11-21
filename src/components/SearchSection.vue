@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { searchPhotos } from "@/services/unsplash.js";
+import { searchPhotos, getRandomPhotos } from "@/services/unsplash.js";
 import { eventBus } from "@/services/EventBus.js";
 export default {
   data: () => ({
@@ -59,7 +59,6 @@ export default {
 
       let that = this; //For this to be scoped in the function below
       searchPhotos(param).then((res) => {
-        console.log(res.results);
         that.unsplashData = res.results;
         eventBus.$emit("unsplashData", that.unsplashData);
         that.loading = false;
@@ -72,14 +71,9 @@ export default {
   },
 
   mounted() {
-    // Load first set of images on mount with search parameter of "random"
-    let query = "random";
-    const param = {
-      query,
-    };
-    searchPhotos(param).then((res) => {
-      console.log(res.results);
-      this.unsplashData = res.results;
+    // Get random images on page load
+    getRandomPhotos().then((res) => {
+      this.unsplashData = res;
       eventBus.$emit("unsplashData", this.unsplashData);
       eventBus.$emit("loading", false);
     });
@@ -99,7 +93,7 @@ export default {
   .form {
     width: 80%;
     position: relative;
-    color: #263959;
+    color: $primary-color;
 
     .search-bar {
       width: 100%;
@@ -114,7 +108,7 @@ export default {
     }
 
     .search-bar::placeholder {
-      color: #263959;
+      color: $primary-color;
     }
 
     .fa-search {
@@ -128,11 +122,11 @@ export default {
   .result-text {
     margin-top: 0.5rem;
     font-size: 2rem;
-    color: #263959;
+    color: $primary-color;
   }
 
   .search-key {
-    color: #6d7b91;
+    color: $secondary-color;
   }
 
   @media (max-width: 960px) {

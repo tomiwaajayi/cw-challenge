@@ -32,7 +32,7 @@
       </div>
       <div v-else class="no-result">
         <p>
-          Ooops ! <br />
+          <span> Ooops ! </span><br />
           No Image Found
         </p>
       </div>
@@ -138,7 +138,10 @@ export default {
     text-align: center;
     padding-top: 10rem;
     font-size: 1.5rem;
-    color: #263959;
+    color: $primary-color;
+  }
+  .no-result span {
+    color: $secondary-color;
   }
 
   @media (min-width: 961px) {

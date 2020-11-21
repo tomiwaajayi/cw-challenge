@@ -1,6 +1,6 @@
 
 <template>
-  <!-- transition component -->
+  <!-- modal-transition component -->
   <transition name="modal-fade">
     <!-- Modal backfrop -->
     <div class="modal-backdrop" @click.stop="close">
@@ -101,12 +101,12 @@ export default {
       h3 {
         font-size: 1.3rem;
         line-height: 120%;
-        color: #253858;
+        color: $primary-color;
       }
 
       p {
         margin-top: 0.5rem;
-        color: #7d899c;
+        color: $secondary-color;
       }
     }
 
@@ -138,7 +138,7 @@ export default {
       p {
         margin-top: 0;
         font-size: 0.8rem;
-        color: #7d899c;
+        color: $primary-color;
         line-height: 100%;
       }
 
