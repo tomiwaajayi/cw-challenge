@@ -3,7 +3,8 @@
     <!-- Search Form  -->
     <form class="form" @submit.prevent="getPhotos">
       <!-- Search Icon -->
-      <span class="fa fa-search"></span>
+      <!-- <span class="fa fa-search"></span> -->
+      <img class="search-icon" src="@/assets/svg/search.svg" alt="" />
       <!-- Search Bar -->
       <input
         ref="search"
@@ -135,7 +136,7 @@ export default {
       border-radius: 10px;
       font-family: "Quicksand", sans-serif;
       font-size: 1.2rem;
-      text-indent: 30px;
+      text-indent: 45px;
       color: inherit;
     }
 
@@ -143,7 +144,8 @@ export default {
       color: $primary-color;
     }
 
-    .fa-search {
+    .search-icon {
+      width: 1.3rem;
       position: absolute;
       top: 30px;
       left: 25px;
@@ -168,15 +170,15 @@ export default {
       .search-bar {
         padding: 1rem;
         font-size: 1rem;
-        text-indent: 45px;
+        text-indent: 40px;
       }
 
-      .fa-search {
+      .search-icon {
+        width: 1rem;
         position: absolute;
         top: 18px;
         left: 25px;
         font-size: 1rem;
-        color: inherit;
       }
     }
 
