@@ -10,7 +10,6 @@
         type="text"
         placeholder="Search for Photo"
         class="search-bar"
-        :disabled="loading"
         @input="searchOnInput"
       />
     </form>
@@ -36,7 +35,7 @@
 // IMPORTS
 import { searchPhotos, getRandomPhotos } from "@/services/unsplash.js";
 import { eventBus } from "@/services/EventBus.js";
-// Import loadash (to debounce the searchoninput function to prevent the function from being called on every click)
+// Import loadash.debounce (to debounce the searchoninput function to prevent the function from being called on every click)
 import { debounce } from "lodash";
 export default {
   data: () => ({
@@ -67,7 +66,7 @@ export default {
       eventBus.$emit("loading", true);
       this.searchingFor = this.$refs.search.value;
 
-      //For this to be scoped in the function below
+      //For "this" to be scoped in the function below
       let that = this;
 
       // Search photos
@@ -79,12 +78,10 @@ export default {
           eventBus.$emit("loading", false);
           that.searchingFor = "";
           that.searchedFor = query;
-          that.$refs.search.value = "";
         })
         .catch(() => {
           that.searchingFor = "";
           that.searchedFor = "";
-          that.$refs.search.value = "";
           that.loading = false;
           that.unsplashData = null;
           eventBus.$emit("unsplashData", that.unsplashData);
