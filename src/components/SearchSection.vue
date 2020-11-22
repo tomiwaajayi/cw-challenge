@@ -58,27 +58,45 @@ export default {
       eventBus.$emit("loading", true);
       this.searchingFor = this.$refs.search.value;
 
-      let that = this; //For this to be scoped in the function below
-      searchPhotos(param).then((res) => {
-        console.log(res.results);
-        that.unsplashData = res.results;
-        eventBus.$emit("unsplashData", that.unsplashData);
-        that.loading = false;
-        eventBus.$emit("loading", false);
-        that.searchingFor = "";
-        that.searchedFor = query;
-        that.$refs.search.value = "";
-      });
+      //For this to be scoped in the function below
+      let that = this;
+
+      // Search photos
+      searchPhotos(param)
+        .then((res) => {
+          that.unsplashData = res.results;
+          eventBus.$emit("unsplashData", that.unsplashData);
+          that.loading = false;
+          eventBus.$emit("loading", false);
+          that.searchingFor = "";
+          that.searchedFor = query;
+          that.$refs.search.value = "";
+        })
+        .catch(() => {
+          that.searchingFor = "";
+          that.searchedFor = "";
+          that.$refs.search.value = "";
+          that.loading = false;
+          that.unsplashData = null;
+          eventBus.$emit("unsplashData", that.unsplashData);
+          eventBus.$emit("loading", false);
+        });
     },
   },
 
   mounted() {
     // Get random images on page load
-    getRandomPhotos().then((res) => {
-      this.unsplashData = res;
-      eventBus.$emit("unsplashData", this.unsplashData);
-      eventBus.$emit("loading", false);
-    });
+    getRandomPhotos()
+      .then((res) => {
+        this.unsplashData = res;
+        eventBus.$emit("unsplashData", this.unsplashData);
+        eventBus.$emit("loading", false);
+      })
+      .catch(() => {
+        this.unsplashData = null;
+        eventBus.$emit("unsplashData", this.unsplashData);
+        eventBus.$emit("loading", false);
+      });
   },
 };
 </script>
