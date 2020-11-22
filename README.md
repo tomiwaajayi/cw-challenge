@@ -7,6 +7,8 @@ The application was developed in Vue.js
   <br>
   <img src="https://res.cloudinary.com/dafsch2zs/image/upload/v1606077231/Screenshot_2020-11-22_at_21.32.01_lozflx.png" width="600" />
   <br>
+  <caption>Screenshot of the landing page</caption>
+  <br>
 </p>
 
 ## Build Setup
@@ -27,12 +29,12 @@ yarn lint
 ```
 
 ## Application Overview
-- The basic idea of the app is to fetch images from the unsplash api and display them in a grid.
-### App description
+- The basic idea of the app is to fetch images from the Unsplash.com API and display them in a grid.
+### App Breakdown
 I decided to have two main compponents.  
   ##### 1. A search component (SearchSection.vue) 
   ##### 2. An image display component (ImageGrid.vue)
-  - The API request is made on form submit in the Search component (which is triggered both by the 'submit.enter' and 'input' events. The search function triggered on 'input' is debounced by the dependency "lodash.debounce") and it gets back an array of the image data. This data is then sent to the image display component. The loading state is also communicated to the "Image-grid component" from the "search component" to display skeleton loaders while the loading status is true.
+  - The API request is made on form submit in the Search component which is triggered both by the 'submit.enter' and 'input' events. The search function triggered on 'input' is debounced by the dependency "lodash.debounce" and it gets back an array of the image data. This data is then sent to the image display component. The loading state is also communicated to the "Image-grid component" from the "search component" to display skeleton loaders while the loading status is true.
   
   ##### 3. The skeleton loader (SkeletonLoader.vue)
  - It's the component rendered to the grid view when images are being fetched. It's imported directly in the ImageGrid.vue component.
