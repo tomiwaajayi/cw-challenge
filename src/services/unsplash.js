@@ -1,8 +1,10 @@
 import axios from 'axios';
 
 // Unsplash APIKEY
-const accessKey = 'D80CkdkXp-3fLCEnW7g-BSSwPq_Uf8fpP49cGIOYzAI';
-const accessKey = 'T5rmM8iDNHj54SdQGvDqV-QAghuSOiY7pS2JT-STZdo';
+const accessKey = 'iGEDdqIrMOagEXLKKdciqlSQj7JKuy5UXnM2Ki4xu48';
+
+// Backup API key
+// const accessKey = 'T5rmM8iDNHj54SdQGvDqV-QAghuSOiY7pS2JT-STZdo';
 
 // Unsplash Base URL
 const apiEndpoint = 'https://api.unsplash.com/';
@@ -19,6 +21,8 @@ export const searchPhotos = async (param) => {
 			params: {
 				client_id: accessKey,
 				per_page: 8,
+				order_by: 'latest',
+				orientation: 'squarish',
 				...param,
 			},
 		});
