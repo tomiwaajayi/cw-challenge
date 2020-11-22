@@ -30,7 +30,7 @@ See Configuration Reference.
 
 ## Application Overview
 - The basic idea of the app is to fetch images from the unsplash api and display them in a grid.
-#### App description
+### App description
 I decided to have two main compponents.  
   ##### 1. A search component (SearchSection.vue) 
   ##### 2. An image display component (ImageGrid.vue)
