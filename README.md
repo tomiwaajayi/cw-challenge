@@ -5,7 +5,7 @@ The application was developed in Vue.js
 
 <p align="center">
   <br>
-  <img src="https://res.cloudinary.com/dafsch2zs/image/upload/v1605982658/Screenshot_2020-11-21_at_19.13.36_a5opme.png" width="600" />
+  <img src="https://res.cloudinary.com/dafsch2zs/image/upload/v1606077231/Screenshot_2020-11-22_at_21.32.01_lozflx.png" width="600" />
   <br>
 </p>
 
