@@ -54,5 +54,5 @@ This component is directly imported into the ImageGrid.vue component. When an im
 
 ### Dependencies
   1. Axios - the http client used in this application.
-  2. lodash.debounce - the dependency responsible for debouncing search on "input"
-  3. VIRTUALLY ALL EDGE CASES ARE TAKEN CARE OF :)
+  2. lodash.debounce - the dependency responsible for debouncing searching on "input" event. I added only the debounce package from lodash as importing the whole loadash dependency would be very unncessary and add bloat to the app.
+  3. PRETTY MUCH ALL EDGE CASES ARE TAKEN CARE OF :)
