@@ -46,9 +46,9 @@ This component is directly imported into the ImageGrid.vue component. When an im
 
 
 ### Things to note
-1. Some images don't return locations and for such images, I use "Somewhere on earth" as the location when rendering the views
-2. The images displayed on the grid are given some contrast using css filter for accessibility reason so that the text would be easy to read. However, on hover the filter is removed and on click the images opens in a modal at full resolution.
-3. There event bus is in the services folder. I decided to use an event bus since only two events were being communicated and It seemed quite overkill to have used Vuex.
-4. Also in the services folder, the unsplash.js is where I have defined my async functions for (1) rendering random images on mount and (2) for searching images based on the search parameter. The functions are then imported into the SearchSection.vue component.
+1. Some images don't locations returned from the API and for such images, I use "Somewhere on earth" as the location when rendering the views
+2. The images displayed on the grid are given some contrast using css filter for accessibility reasons, so that the text would be easy to read. However, on hover the filter is removed and on click the images opens in a modal at full resolution.
+3. There is an event bus file (EventBus.js) is in the services folder. I decided to use an event bus since only two events were being communicated and It seemed quite overkill to have used Vuex.
+4. Also in the services folder, the unsplash.js file is where I have defined my GET functions for (1) rendering random images on mount and (2) for searching images based on the search parameter. The functions are then imported into the SearchSection.vue component.
 5. On app load, random images are fecthed and used to populate the grid initally. Updates are then made by search queries.
-6. Axios is the http cient used in this application.
+6. Axios is the http client used in this application.
