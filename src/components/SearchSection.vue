@@ -11,6 +11,7 @@
         placeholder="Search for Photo"
         class="search-bar"
         :disabled="loading"
+        @input="searchOnInput"
       />
     </form>
     <!-- You are searching for "search-parameter" -->
@@ -35,6 +36,8 @@
 // IMPORTS
 import { searchPhotos, getRandomPhotos } from "@/services/unsplash.js";
 import { eventBus } from "@/services/EventBus.js";
+// Import loadash (to debounce the searchoninput function to prevent the function from being called on every click)
+import { debounce } from "lodash";
 export default {
   data: () => ({
     loading: false,
@@ -44,6 +47,12 @@ export default {
   }),
 
   methods: {
+    // Method called from the input event
+    searchOnInput: debounce(function () {
+      this.getPhotos();
+    }, 1500),
+
+    // Method called when images are searched
     getPhotos() {
       let query = this.$refs.search.value;
       // Search parameter for making the api call

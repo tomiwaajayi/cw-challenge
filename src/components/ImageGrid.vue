@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <!-- Show this div as soon as loading = false -->
+    <!-- Show this div as soon as loading = false and there is no request erro -->
     <div v-if="!loading && unsplashData">
       <!-- If the returned data array > 0 i.e if at least one image is returned -->
       <div class="grid-wrapper" v-if="unsplashData.length > 0">
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <!-- Else, if the null is returned, i.e "401 or 403 status code", display this text -->
+    <!-- Else, if null is returned, i.e "401 or 403 status code", display this text -->
     <div v-if="!unsplashData" class="no-result">
       <p>
         <!-- Surprised emoji -->
