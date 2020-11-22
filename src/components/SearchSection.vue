@@ -33,7 +33,7 @@
 
 <script>
 // IMPORTS
-import { searchPhotos, getRandomPhotos } from "@/services/unsplash.js";
+import { searchPhotos } from "@/services/unsplash.js";
 import { eventBus } from "@/services/EventBus.js";
 // Import loadash.debounce (to debounce the searchoninput function to prevent the function from being called on every click)
 import { debounce } from "lodash";
@@ -93,16 +93,19 @@ export default {
   },
 
   mounted() {
-    // Get random images on page load
-    getRandomPhotos()
+    // Get latest African images on page load
+    let that = this;
+    searchPhotos({ query: "African", order_by: "latest" })
       .then((res) => {
-        this.unsplashData = res;
-        eventBus.$emit("unsplashData", this.unsplashData);
+        that.unsplashData = res.results;
+        eventBus.$emit("unsplashData", that.unsplashData);
+        that.loading = false;
         eventBus.$emit("loading", false);
       })
       .catch(() => {
-        this.unsplashData = null;
-        eventBus.$emit("unsplashData", this.unsplashData);
+        that.loading = false;
+        that.unsplashData = null;
+        eventBus.$emit("unsplashData", that.unsplashData);
         eventBus.$emit("loading", false);
       });
   },
