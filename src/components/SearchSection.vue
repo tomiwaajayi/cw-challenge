@@ -48,7 +48,9 @@ export default {
   methods: {
     // Method called from the input event
     searchOnInput: debounce(function () {
-      this.getPhotos();
+      if (this.$refs.search.value) {
+        this.getPhotos();
+      }
     }, 1500),
 
     // Method called when images are searched
