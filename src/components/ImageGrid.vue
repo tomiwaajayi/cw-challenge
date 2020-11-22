@@ -103,7 +103,6 @@ export default {
 
     toggleModal(id) {
       const selectedImg = this.unsplashData.find((el) => el.id === id);
-      console.log(selectedImg);
       this.imgData.imgSrc = selectedImg.urls.full;
       this.imgData.imgAuthor =
         selectedImg.user.first_name + " " + selectedImg.user.last_name;
