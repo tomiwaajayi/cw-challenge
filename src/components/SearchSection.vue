@@ -49,47 +49,50 @@ export default {
   methods: {
     // Method called from the input event
     searchOnInput: debounce(function () {
-      if (this.$refs.search.value) {
+      if (this.$refs.search.value.trim()) {
         this.getPhotos();
       }
     }, 1500),
 
     // Method called when images are searched
     getPhotos() {
-      let query = this.$refs.search.value;
-      // Search parameter for making the api call
-      const param = {
-        query,
-      };
-      // Reset searched parameters
-      this.searchingFor = "";
-      this.searchedFor = "";
-      // Set loading state when making API call
-      this.loading = true;
-      eventBus.$emit("loading", true);
-      this.searchingFor = this.$refs.search.value;
+      // Check if the string searched is not only spaces
+      if (this.$refs.search.value.trim()) {
+        let query = this.$refs.search.value.trim();
+        // Search parameter for making the api call
+        const param = {
+          query,
+        };
+        // Reset searched parameters
+        this.searchingFor = "";
+        this.searchedFor = "";
+        // Set loading state when making API call
+        this.loading = true;
+        eventBus.$emit("loading", true);
+        this.searchingFor = this.$refs.search.value;
 
-      //For "this" to be scoped in the function below
-      let that = this;
+        //For "this" to be scoped in the function below
+        let that = this;
 
-      // Search photos
-      searchPhotos(param)
-        .then((res) => {
-          that.unsplashData = res.results;
-          eventBus.$emit("unsplashData", that.unsplashData);
-          that.loading = false;
-          eventBus.$emit("loading", false);
-          that.searchingFor = "";
-          that.searchedFor = query;
-        })
-        .catch(() => {
-          that.searchingFor = "";
-          that.searchedFor = "";
-          that.loading = false;
-          that.unsplashData = null;
-          eventBus.$emit("unsplashData", that.unsplashData);
-          eventBus.$emit("loading", false);
-        });
+        // Search photos
+        searchPhotos(param)
+          .then((res) => {
+            that.unsplashData = res.results;
+            eventBus.$emit("unsplashData", that.unsplashData);
+            that.loading = false;
+            eventBus.$emit("loading", false);
+            that.searchingFor = "";
+            that.searchedFor = query;
+          })
+          .catch(() => {
+            that.searchingFor = "";
+            that.searchedFor = "";
+            that.loading = false;
+            that.unsplashData = null;
+            eventBus.$emit("unsplashData", that.unsplashData);
+            eventBus.$emit("loading", false);
+          });
+      }
     },
   },
 
