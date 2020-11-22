@@ -34,7 +34,7 @@ See Configuration Reference.
 I decided to have two main compponents.  
   ##### 1. A search component (SearchSection.vue) 
   ##### 2. An image display component (ImageGrid.vue)
-  - The api request is made on form submit in the Search component (which is done by the 'enter' click event and it gets back an array of the image data. This data is then sent to the image display component. The loading state is also communicated to the "Image-grid component" from the "search component" to display skeleton loaders while the loading status is true.
+  - The api request is made on form submit in the Search component (which is done by the 'enter' click event and also triggered on form input. The search function triggered on search is debounced by the dependency "lodash.debounce") and it gets back an array of the image data. This data is then sent to the image display component. The loading state is also communicated to the "Image-grid component" from the "search component" to display skeleton loaders while the loading status is true.
   
   ##### 3. The skeleton loader (SkeletonLoader.vue)
  - It's the component rendered to the grid view when images are being fetched. It's imported directly in the ImageGrid.vue component.
@@ -51,4 +51,7 @@ This component is directly imported into the ImageGrid.vue component. When an im
 3. There is an event bus file (EventBus.js) is in the services folder. I decided to use an event bus since only two events were being communicated and It seemed quite overkill to have used Vuex.
 4. Also in the services folder, the unsplash.js file is where I have defined my GET functions for (1) rendering random images on mount and (2) for searching images based on the search parameter. The functions are then imported into the SearchSection.vue component.
 5. On app load, random images are fecthed and used to populate the grid initally. Updates are then made by search queries.
-6. Axios is the http client used in this application.
+
+### Dependencies
+  1. Axios - the http client used in this application.
+  2. lodash.debounce - the dependency responsible for debouncing search on "input"
