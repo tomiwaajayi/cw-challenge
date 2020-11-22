@@ -145,10 +145,10 @@ export default {
     }
 
     .search-icon {
-      width: 1.3rem;
+      width: 1.2rem;
       position: absolute;
       top: 30px;
-      left: 25px;
+      left: 35px;
       font-size: 1.2rem;
       color: inherit;
     }
