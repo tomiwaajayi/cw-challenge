@@ -31,6 +31,7 @@ export const searchPhotos = async (param) => {
 		});
 
 		if (res.status == 200) return res.data;
+		else return null;
 	} catch (err) {
 		console.error(err);
 		return null;
@@ -48,6 +49,7 @@ export const getRandomPhotos = async () => {
 		});
 
 		if (res.status == 200) return res.data;
+		else return null;
 	} catch (err) {
 		console.error(err);
 		return null;
