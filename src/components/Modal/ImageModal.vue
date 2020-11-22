@@ -106,17 +106,16 @@ export default {
       height: 20%;
       border-top: 1px solid #eeeeee;
       justify-content: center;
+    }
+    .img-author {
+      font-size: 1.3rem;
+      line-height: 120%;
+      color: $primary-color;
+    }
 
-      h3 {
-        font-size: 1.3rem;
-        line-height: 120%;
-        color: $primary-color;
-      }
-
-      p {
-        margin-top: 0.5rem;
-        color: $secondary-color;
-      }
+    .img-location {
+      margin-top: 0.5rem;
+      color: $secondary-color;
     }
 
     .btn-close {
@@ -140,13 +139,13 @@ export default {
       width: 85%;
       height: 50%;
 
-      h3 {
-        font-size: 0.85rem;
+      .img-author {
+        font-size: 1rem;
       }
 
-      p {
-        margin-top: 0;
-        font-size: 0.8rem;
+      .img-location {
+        margin-top: 0.25rem;
+        font-size: 0.7rem;
         color: $primary-color;
         line-height: 100%;
       }
@@ -154,6 +153,22 @@ export default {
       .modal-footer {
         padding: 1.6rem;
       }
+    }
+    @media only screen and (max-device-width: 768px) and (orientation: landscape) {
+      width: 60%;
+      height: 85%;
+
+      .img-author {
+        font-size: 1rem;
+      }
+
+      .img-location {
+        margin-top: 0.25rem;
+        font-size: 0.7rem;
+        color: $primary-color;
+        line-height: 100%;
+      }
+      //enter code here
     }
   }
 }
