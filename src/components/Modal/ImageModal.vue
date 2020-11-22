@@ -3,7 +3,7 @@
   <!-- modal-transition component -->
   <transition name="modal-fade">
     <!-- Modal backfrop -->
-    <div class="modal-backdrop" @click.stop="close">
+    <div class="modal-backdrop" @click.stop="close" v-if="imgData">
       <div
         class="modal"
         role="dialog"
@@ -22,15 +22,21 @@
 
         <!-- Modal Body (Image) -->
         <section class="modal-body" id="modalDescription">
-          <img :src="imgData.imgSrc" alt="" />
+          <img :src="imgData.urls.full" :alt="imgData.alt_description" />
+          <skeleton-loader></skeleton-loader>
         </section>
 
         <!-- Modal Footer -->
         <footer class="modal-footer">
-          <h3 class="img-author">{{ imgData.imgAuthor }}</h3>
+          <h3 class="img-author">
+            {{ imgData.user.first_name }}
+            {{ imgData.user.last_name }}
+          </h3>
           <p class="img-location">
             {{
-              imgData.imgLocation ? imgData.imgLocation : "Somewhere on earth"
+              imgData.user.location
+                ? imgData.user.location
+                : "Somewhere on earth"
             }}
           </p>
         </footer>
@@ -38,7 +44,6 @@
     </div>
   </transition>
 </template>
-
 
 
 <script>

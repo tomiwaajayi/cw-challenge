@@ -12,7 +12,7 @@
       <!-- If the returned data array > 0 i.e if at least one image is returned -->
       <div class="grid-wrapper" v-if="unsplashData.length > 0">
         <div
-          class="image"
+          class="image animate-grid"
           v-for="data in unsplashData"
           :key="data.id"
           @click="toggleModal(data.id)"
@@ -21,6 +21,7 @@
             :src="data.urls.small"
             :alt="data.alt_description"
             class="data-image"
+            loading="lazy"
           />
           <div class="bottom-left">
             <h3>{{ data.user.first_name }} {{ data.user.last_name }}</h3>
@@ -77,11 +78,7 @@ export default {
     loading: true,
     unsplashData: null,
     isModalVisible: false,
-    imgData: {
-      imgSrc: "",
-      imgAuthor: "",
-      imgLocation: "",
-    },
+    iimgData: "",
   }),
 
   created() {
@@ -90,6 +87,7 @@ export default {
     });
     eventBus.$on("unsplashData", (data) => {
       this.unsplashData = data;
+      console.log(this.unsplashData);
     });
   },
 
@@ -103,10 +101,7 @@ export default {
 
     toggleModal(id) {
       const selectedImg = this.unsplashData.find((el) => el.id === id);
-      this.imgData.imgSrc = selectedImg.urls.full;
-      this.imgData.imgAuthor =
-        selectedImg.user.first_name + " " + selectedImg.user.last_name;
-      this.imgData.imgLocation = selectedImg.user.location;
+      this.imgData = { ...selectedImg };
       this.showModal();
     },
   },
@@ -133,12 +128,19 @@ export default {
       width: 100%;
       height: 100%;
       filter: contrast(50%);
-      transition: all 0.5s;
+      transition: all 0.6s;
     }
 
+    // Animate image contrast and scale on hover
     img:hover {
       filter: contrast(100%);
+      transform: scale(1.05);
     }
+  }
+
+  // Animate the grid
+  .animate-grid {
+    animation: ani-grid 1.5s ease forwards;
   }
 
   // Css for image text
@@ -218,6 +220,17 @@ export default {
         border-radius: 10px;
         height: 300px;
       }
+    }
+  }
+
+  @keyframes ani-grid {
+    from {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
     }
   }
 }
