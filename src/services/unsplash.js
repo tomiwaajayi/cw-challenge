@@ -22,7 +22,6 @@ export const searchPhotos = async (param) => {
 				client_id: accessKey,
 				per_page: 8,
 				order_by: 'latest',
-				orientation: 'squarish',
 				...param,
 			},
 		});
