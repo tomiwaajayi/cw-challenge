@@ -1,5 +1,5 @@
 <template>
-  <div class="image-grid">
+  <section class="image-grid">
     <!-- Skeleton loader if data is being fetched (loading = true) -->
     <div class="grid-wrapper" v-if="loading">
       <div class="image" v-for="num in 8" :key="num">
@@ -57,7 +57,7 @@
     <!-- Image Modal  -->
     <image-modal v-show="isModalVisible" @close="closeModal" :imgData="imgData">
     </image-modal>
-  </div>
+  </section>
 </template>
 
 
