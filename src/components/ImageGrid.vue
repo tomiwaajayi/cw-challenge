@@ -87,7 +87,6 @@ export default {
     });
     eventBus.$on("unsplashData", (data) => {
       this.unsplashData = data;
-      console.log(this.unsplashData);
     });
   },
 
