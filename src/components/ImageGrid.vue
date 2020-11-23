@@ -78,7 +78,7 @@ export default {
     loading: true,
     unsplashData: null,
     isModalVisible: false,
-    iimgData: "",
+    imgData: "",
   }),
 
   created() {
