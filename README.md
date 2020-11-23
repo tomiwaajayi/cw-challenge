@@ -29,7 +29,7 @@ yarn lint
 ```
 
 ## Application Overview
-- The basic idea of the app is to fetch images from the Unsplash.com API and display them in a grid.
+- The basic idea of the app is to fetch images from the unsplash.com API and display them in a grid.
 ### App Breakdown
 I decided to have two main compponents.  
   ##### 1. A search component (SearchSection.vue) 
@@ -46,7 +46,7 @@ This component is directly imported into the ImageGrid.vue component. When an im
 
 ### Dependencies
   1. Axios - the http client used in this application.
-  2. lodash.debounce - the dependency responsible for debouncing searching on "input" event. I added only the debounce package from lodash as importing the whole loadash dependency would be very unncessary and add bloat to the app.
+  2. lodash.debounce - the dependency responsible for debouncing searching on "input" event. I added only the debounce package from lodash as importing the whole lodash dependency would be very unncessary and add bloat to the app.
   
 
 
