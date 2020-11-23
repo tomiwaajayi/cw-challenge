@@ -57,6 +57,9 @@ This component is directly imported into the ImageGrid.vue component. When an im
 
 
 ### Things to note
+
+*** No CSS framework is used ***
+
 1. Some images don't have locations returned from the API and for such images, I use "Somewhere on earth" as the location when rendering the views
 2. The images displayed on the grid are given some contrast using css filter for accessibility reasons, so that the text would be easy to read. However, on hover the filter is removed and on click the images opens in a modal at full resolution.
 3. There is a lazy-load fuction in the directives folder which sets up the "lazy-load" directive to be used in the ImageItem.vue component. The directive is declared globally in the main.js file.
