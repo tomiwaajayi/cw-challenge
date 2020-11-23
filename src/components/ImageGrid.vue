@@ -20,7 +20,6 @@
           <img
             :src="data.urls.small"
             :alt="data.alt_description"
-            class="data-image"
             loading="lazy"
           />
           <div class="bottom-left">

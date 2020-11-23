@@ -1,10 +1,10 @@
 // Import Axios - HTTP Cliennt
 import axios from 'axios';
 
-// Unsplash APIKEY
+// Prod. APIKEY
 const accessKey = 'iGEDdqIrMOagEXLKKdciqlSQj7JKuy5UXnM2Ki4xu48';
 
-// Backup API key
+// Local API key
 // const accessKey = 'T5rmM8iDNHj54SdQGvDqV-QAghuSOiY7pS2JT-STZdo';
 
 // Unsplash Base URL
