@@ -44,6 +44,11 @@ It's a component without any functionality. It's works as a loader and the loadi
 - It's the modal component that pops up when an image in the grid is clicked. It's shows the image at maximum resolution alongside the author and the location. It can be toggled off (closed) by clicking anywhere on the screen.
 This component is directly imported into the ImageGrid.vue component. When an image on the grid is clicked, it passes it's ID into the function that triggers the modal and it's this information that the modal uses to get the image, author and location specific to the image clicked.
 
+### Dependencies
+  1. Axios - the http client used in this application.
+  2. lodash.debounce - the dependency responsible for debouncing searching on "input" event. I added only the debounce package from lodash as importing the whole loadash dependency would be very unncessary and add bloat to the app.
+  
+
 
 ### Things to note
 1. Some images don't have locations returned from the API and for such images, I use "Somewhere on earth" as the location when rendering the views
@@ -51,8 +56,5 @@ This component is directly imported into the ImageGrid.vue component. When an im
 3. There is an "event-bus" file (EventBus.js) is in the services folder. I decided to use an "event-bus" since only two sibling components were communicating and it seemed quite overkill to have used Vuex.
 4. Also in the services folder, the unsplash.js file is where I have defined my GET function for searching images based on the search parameter. The function is then imported into the SearchSection.vue component.
 5. On app load, images are fecthed from the API with "African" as the search query and "latest" as the search filter. After app load, all images searched are filtered by "most relevant".
+6. PRETTY MUCH ALL EDGE CASES ARE TAKEN CARE OF :)
 
-### Dependencies
-  1. Axios - the http client used in this application.
-  2. lodash.debounce - the dependency responsible for debouncing searching on "input" event. I added only the debounce package from lodash as importing the whole loadash dependency would be very unncessary and add bloat to the app.
-  3. PRETTY MUCH ALL EDGE CASES ARE TAKEN CARE OF :)
