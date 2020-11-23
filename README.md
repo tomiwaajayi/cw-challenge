@@ -64,5 +64,5 @@ This component is directly imported into the ImageGrid.vue component. When an im
 5. Also in the services folder, the unsplash.js file is where I have defined my GET function for searching images based on the search parameter. The function is then imported into the SearchSection.vue component.
 6. On app load, images are fecthed from the API with "African" as the search query and "latest" as the search filter. After app load, all images searched are filtered by "most relevant".
 7. Images only load when they are visible in the viewport. (this is handled by the "lazy-load" directive)
-7. PRETTY MUCH ALL EDGE CASES ARE TAKEN CARE OF :)
+8. PRETTY MUCH ALL EDGE CASES ARE TAKEN CARE OF :)
 
