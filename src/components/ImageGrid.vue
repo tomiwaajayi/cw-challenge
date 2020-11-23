@@ -19,7 +19,7 @@
         >
           <!-- Image Component with lazy load directive to lazy load the images -->
           <image-item
-            :imgUrl="data.urls.regular"
+            :imgUrl="data.urls.small"
             :imgAlt="data.alt_description"
           ></image-item>
           <!--  -->
