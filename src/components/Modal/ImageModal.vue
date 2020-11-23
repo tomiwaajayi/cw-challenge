@@ -22,8 +22,12 @@
 
         <!-- Modal Body (Image) -->
         <section class="modal-body" id="modalDescription">
-          <img :src="imgData.urls.full" :alt="imgData.alt_description" />
-          <skeleton-loader></skeleton-loader>
+          <!-- Image Component with lazy-load directive to lazy load all the images -->
+          <image-item
+            :imgUrl="imgData.urls.full"
+            :imgAlt="imgData.alt_description"
+          ></image-item>
+          <!--  -->
         </section>
 
         <!-- Modal Footer -->
@@ -47,9 +51,16 @@
 
 
 <script>
+import ImageItem from "../ImageItem.vue";
 export default {
+  components: { ImageItem },
   name: "image-modal",
-  props: ["imgData"],
+  props: {
+    imgData: {
+      type: Object,
+      required: true,
+    },
+  },
   methods: {
     close() {
       this.$emit("close");

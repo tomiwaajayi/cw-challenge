@@ -17,11 +17,12 @@
           :key="data.id"
           @click="toggleModal(data.id)"
         >
-          <img
-            :src="data.urls.small"
-            :alt="data.alt_description"
-            loading="lazy"
-          />
+          <!-- Image Component with lazy load directive to lazy load the images -->
+          <image-item
+            :imgUrl="data.urls.regular"
+            :imgAlt="data.alt_description"
+          ></image-item>
+          <!--  -->
           <div class="bottom-left">
             <h3>{{ data.user.first_name }} {{ data.user.last_name }}</h3>
             <p>
@@ -54,7 +55,7 @@
     </div>
 
     <!-- Image Modal  -->
-    <image-modal v-show="isModalVisible" @close="closeModal" :imgData="imgData">
+    <image-modal v-if="isModalVisible" @close="closeModal" :imgData="imgData">
     </image-modal>
   </section>
 </template>
@@ -63,8 +64,11 @@
 // Script
 <script>
 // Imports
+// Components
 import SkeletonLoader from "@/components/Loader//SkeletonLoader.vue";
+import ImageItem from "@/components/ImageItem.vue";
 import ImageModal from "@/components/Modal/ImageModal.vue";
+// EventBus
 import { eventBus } from "@/services/EventBus.js";
 
 // Config
@@ -72,6 +76,7 @@ export default {
   components: {
     SkeletonLoader,
     ImageModal,
+    ImageItem,
   },
   data: () => ({
     loading: true,
