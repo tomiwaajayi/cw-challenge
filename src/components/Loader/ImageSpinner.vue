@@ -1,27 +1,29 @@
+// Ripple animation animation component for lazy loading images
 <template>
-  <div class="ripple">
-    <div class="ripple__circle"></div>
-    <div class="ripple__circle ripple__inner-circle"></div>
+  <div class="ripple-ani">
+    <div class="circle"></div>
+    <div class="circle inner-circle"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.ripple {
+.ripple-ani {
   display: inline-block;
   position: absolute;
   width: 64px;
   height: 64px;
 
-  &__circle {
+  .circle {
     position: absolute;
-    border: 4px solid rgb(35, 35, 35);
+    border: 2px solid #253858;
     opacity: 1;
     border-radius: 50%;
     animation: ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
 
-  &__inner-circle {
+  .inner-circle {
     animation-delay: -0.5s;
+    border: 8px solid #6d7b91;
   }
 }
 
