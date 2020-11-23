@@ -181,6 +181,6 @@ export default {
 
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
 }
 </style>
