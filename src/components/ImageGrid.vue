@@ -17,10 +17,14 @@
           :key="data.id"
           @click="toggleModal(data.id)"
         >
+          <!-- Image Overlay to show good image to text contrast -->
+          <div class="img-overlay"></div>
           <!-- Image Component with lazy load directive to lazy load the images -->
           <image-item
             :imgUrl="data.urls.small"
-            :imgAlt="data.alt_description"
+            :imgAlt="
+              data.alt_description ? data.alt_description : 'Somewhere on earth'
+            "
           ></image-item>
           <!--  -->
           <div class="bottom-left">
@@ -126,17 +130,35 @@ export default {
     position: relative;
     cursor: pointer;
 
+    .img-overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 80px;
+      transition: all 2s;
+      background: rgb(0, 0, 0);
+      background: linear-gradient(
+        360deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.75) 25%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.25) 75%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      opacity: 0.8;
+      z-index: 100;
+    }
+
+    // Styling passed into the ImageItem-Component
     img {
       object-fit: cover;
       width: 100%;
       height: 100%;
-      filter: contrast(50%);
       transition: all 0.6s;
     }
 
-    // Animate image contrast and scale on hover
+    // Animate image scale on hover
     img:hover {
-      filter: contrast(100%);
       transform: scale(1.05);
     }
   }
@@ -154,6 +176,7 @@ export default {
     z-index: 5;
     color: #fff;
     font-size: 1rem;
+    z-index: 200;
   }
 
   .bottom-left p {

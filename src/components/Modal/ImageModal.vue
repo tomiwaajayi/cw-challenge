@@ -25,7 +25,11 @@
           <!-- Image Component with lazy-load directive to lazy load all the images -->
           <image-item
             :imgUrl="imgData.urls.full"
-            :imgAlt="imgData.alt_description"
+            :imgAlt="
+              imgData.alt_description
+                ? imgData.alt_description
+                : 'Somewhere on earth'
+            "
           ></image-item>
           <!--  -->
         </section>
