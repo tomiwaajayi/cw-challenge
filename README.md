@@ -61,7 +61,7 @@ This component is directly imported into the ImageGrid.vue component. When an im
 *** No CSS framework is used ***
 
 1. Some images don't have locations returned from the API and for such images, I use "Somewhere on earth" as the location when rendering the views
-2. The images displayed on the grid are given some contrast using css filter for accessibility reasons, so that the text would be easy to read. However, on hover the filter is removed and on click the images opens in a modal at full resolution.
+2. There's an overlay at the bottom of the images where the Image author and location are shown to give the text good contrast.
 3. There is a lazy-load fuction in the directives folder which sets up the "lazy-load" directive to be used in the ImageItem.vue component. The directive is declared globally in the main.js file.
 4. There is an "event-bus" file (EventBus.js) is in the services folder. I decided to use an "event-bus" since only two sibling components were communicating and it seemed quite overkill to have used Vuex.
 5. Also in the services folder, the unsplash.js file is where I have defined my GET function for searching images based on the search parameter. The function is then imported into the SearchSection.vue component.
