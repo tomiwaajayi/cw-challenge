@@ -2,10 +2,10 @@
 import axios from 'axios';
 
 // Prod. APIKEY
-// const accessKey = 'iGEDdqIrMOagEXLKKdciqlSQj7JKuy5UXnM2Ki4xu48';
+const accessKey = 'iGEDdqIrMOagEXLKKdciqlSQj7JKuy5UXnM2Ki4xu48';
 
 // Local API key
-const accessKey = 'T5rmM8iDNHj54SdQGvDqV-QAghuSOiY7pS2JT-STZdo';
+// const accessKey = 'T5rmM8iDNHj54SdQGvDqV-QAghuSOiY7pS2JT-STZdo';
 
 // Unsplash Base URL
 const apiEndpoint = 'https://api.unsplash.com/';
