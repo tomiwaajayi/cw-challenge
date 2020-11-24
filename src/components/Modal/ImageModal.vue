@@ -10,7 +10,7 @@
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
-        <!-- Closr Modal Button -->
+        <!-- Close Modal Button -->
         <button
           type="button"
           class="btn-close"
@@ -183,7 +183,6 @@ export default {
         color: $primary-color;
         line-height: 100%;
       }
-      //enter code here
     }
   }
 }
