@@ -6,10 +6,10 @@
       <img class="search-icon" src="@/assets/svg/search.svg" alt="" />
       <!-- Search Bar -->
       <input
-        ref="search"
         type="text"
         placeholder="Search for Photo"
         class="search-bar"
+        v-model="query"
         @input="searchOnInput"
       />
     </form>
@@ -33,88 +33,43 @@
 
 <script>
 // IMPORTS
-import { searchPhotos } from "@/services/unsplash.js";
-import { eventBus } from "@/services/EventBus.js";
-// Import loadash.debounce (to debounce the searchOnInput function to prevent the function from being called on every click)
+import { mapActions } from "vuex";
+// Import loadash.debounce
 import { debounce } from "lodash";
 export default {
   data: () => ({
-    loading: false,
-    searchingFor: "",
-    searchedFor: "",
-    unsplashData: null,
+    //search query
+    query: "",
   }),
-
   methods: {
-    // Method called from the input event
-    searchOnInput: debounce(function () {
-      if (this.$refs.search.value.trim()) {
-        this.getPhotos();
-      }
-    }, 1500),
-
-    // Method called when images are searched
+    ...mapActions(["getPhotos", "getPhotosOnLoad"]),
     getPhotos: debounce(
       function () {
-        // Check if the string searched is not only spaces
-        if (this.$refs.search.value.trim()) {
-          let query = this.$refs.search.value.trim();
-          // Search parameter for making the api call
-          const param = {
-            query,
-          };
-          // Reset searched parameters
-          this.searchingFor = "";
-          this.searchedFor = "";
-          // Set loading state when making API call
-          this.loading = true;
-          eventBus.$emit("loading", true);
-          this.searchingFor = this.$refs.search.value;
-
-          //For "this" to be scoped in the function below
-          let that = this;
-
-          // Search photos
-          searchPhotos(param)
-            .then((res) => {
-              that.unsplashData = res.results;
-              eventBus.$emit("unsplashData", that.unsplashData);
-              that.loading = false;
-              eventBus.$emit("loading", false);
-              that.searchingFor = "";
-              that.searchedFor = query;
-            })
-            .catch(() => {
-              that.searchingFor = "";
-              that.searchedFor = "";
-              that.loading = false;
-              that.unsplashData = null;
-              eventBus.$emit("unsplashData", that.unsplashData);
-              eventBus.$emit("loading", false);
-            });
-        }
+        this.$store.dispatch("getPhotos", this.query);
       },
       1500,
       { leading: true, trailing: false }
     ),
+    // Method called from the input event
+    searchOnInput: debounce(function () {
+      if (this.query.trim()) {
+        this.getPhotos();
+      }
+    }, 1500),
   },
 
   mounted() {
     // Get latest African images on page load
-    let that = this;
-    searchPhotos({ query: "African", order_by: "latest" })
-      .then((res) => {
-        that.unsplashData = res.results;
-        eventBus.$emit("unsplashData", that.unsplashData);
-        that.loading = false;
-        eventBus.$emit("loading", false);
-      })
-      .catch(() => {
-        that.loading = false;
-        that.unsplashData = null;
-        eventBus.$emit("unsplashData", that.unsplashData);
-        eventBus.$emit("loading", false);
-      });
+    this.$store.dispatch("getPhotosOnLoad");
+  },
+
+  computed: {
+    searchingFor() {
+      return this.$store.state.searchingFor;
+    },
+    searchedFor() {
+      return this.$store.state.searchedFor;
+    },
   },
 };
 </script>

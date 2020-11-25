@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import App from './App.vue';
-// Import lazy-load directive
+// Import vuexstore
+import { store } from './store';
+// lazy-load directive
 import LazyLoadDirective from '@/directives/LazyLoadDirective';
 
 Vue.directive('lazyload', LazyLoadDirective);
 
 Vue.config.productionTip = false;
 
-new Vue({
-	render: (h) => h(App),
-}).$mount('#app');
+new Vue({ store, render: (h) => h(App) }).$mount('#app');

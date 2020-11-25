@@ -65,39 +65,30 @@
 </template>
 
 
-// Script
 <script>
-// Imports
-// Components
 import SkeletonLoader from "@/components/Loader//SkeletonLoader.vue";
 import ImageItem from "@/components/ImageItem.vue";
 import ImageModal from "@/components/Modal/ImageModal.vue";
-// EventBus
-import { eventBus } from "@/services/EventBus.js";
 
 // Config
 export default {
+  data: () => ({
+    isModalVisible: false,
+    imgData: "",
+  }),
   components: {
     SkeletonLoader,
     ImageModal,
     ImageItem,
   },
-  data: () => ({
-    loading: true,
-    unsplashData: null,
-    isModalVisible: false,
-    imgData: "",
-  }),
-
-  created() {
-    eventBus.$on("loading", (status) => {
-      this.loading = status;
-    });
-    eventBus.$on("unsplashData", (data) => {
-      this.unsplashData = data;
-    });
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
+    unsplashData() {
+      return this.$store.state.unsplashData;
+    },
   },
-
   methods: {
     showModal() {
       this.isModalVisible = true;
