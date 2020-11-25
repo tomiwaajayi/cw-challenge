@@ -34,7 +34,7 @@ yarn lint
 The following are the main components that make up the application  
   ##### 1. A search component (SearchSection.vue) 
   ##### 2. An image display component (ImageGrid.vue)
-  - The API request is made on form submit in the Search component which is triggered both by the 'submit.enter' and 'input' events. The search function triggered on 'input' is debounced by the dependency "lodash.debounce" and it gets back an array of the image data. This data is then sent to the image display component. The loading state is also communicated to the "Image-grid component" from the "search component" to display skeleton loaders while the loading status is true.
+  - The API request is made on form submit in the Search component which is triggered both by the 'submit.enter' and 'input' events. The search function triggered on 'input' is debounced to prevent making API calls in quick succession. The image data and loading state are managed globally in the vuex store. Skeleton loaders are shown while data is being fetched from the API (which also means that loading state is true)
   
   ##### 3. The skeleton loader (SkeletonLoader.vue)
  - It's the component rendered to the grid view when images are being fetched. It's imported directly in the ImageGrid.vue component.
@@ -63,8 +63,8 @@ This component is directly imported into the ImageGrid.vue component. When an im
 1. Some images don't have locations returned from the API and for such images, I use "Somewhere on earth" as the location when rendering the views
 2. There's an overlay at the bottom of the images where the Image author and location are shown to give the text good contrast.
 3. There is a lazy-load fuction in the directives folder which sets up the "lazy-load" directive to be used in the ImageItem.vue component. The directive is declared globally in the main.js file.
-4. There is an "event-bus" file (EventBus.js) is in the services folder. I decided to use an "event-bus" since only two sibling components were communicating and it seemed quite overkill to have used Vuex.
-5. Also in the services folder, the unsplash.js file is where I have defined my GET function for searching images based on the search parameter. The function is then imported into the SearchSection.vue component.
+4. I used VueX to manage the global state in the application
+5. In the services folder, the unsplash.js file is where I have defined my GET function for searching images based on the search parameter. The function is then used in VueX action to search for the images
 6. On app load, images are fecthed from the API with "African" as the search query and "latest" as the search filter. After app load, all images searched are filtered by "most relevant".
 7. Images only load when they are visible in the viewport. (this is handled by the "lazy-load" directive)
 8. PRETTY MUCH ALL EDGE CASES ARE TAKEN CARE OF :)
