@@ -17,7 +17,7 @@
           :key="data.id"
           @click="toggleModal(data.id)"
         >
-          <!-- Image Overlay to show good image to text contrast -->
+          <!-- Image Overlay to show good "image to text" contrast -->
           <div class="img-overlay"></div>
           <!-- Image Component with lazy load directive to lazy load the images -->
           <image-item
@@ -130,6 +130,7 @@ export default {
     position: relative;
     cursor: pointer;
 
+    // Image overlay css
     .img-overlay {
       position: absolute;
       bottom: 0;

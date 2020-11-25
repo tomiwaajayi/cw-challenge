@@ -3,7 +3,6 @@
     <!-- Search Form  -->
     <form class="form" @submit.prevent="getPhotos">
       <!-- Search Icon -->
-      <!-- <span class="fa fa-search"></span> -->
       <img class="search-icon" src="@/assets/svg/search.svg" alt="" />
       <!-- Search Bar -->
       <input
@@ -36,7 +35,7 @@
 // IMPORTS
 import { searchPhotos } from "@/services/unsplash.js";
 import { eventBus } from "@/services/EventBus.js";
-// Import loadash.debounce (to debounce the searchoninput function to prevent the function from being called on every click)
+// Import loadash.debounce (to debounce the searchOnInput function to prevent the function from being called on every click)
 import { debounce } from "lodash";
 export default {
   data: () => ({
@@ -55,45 +54,49 @@ export default {
     }, 1500),
 
     // Method called when images are searched
-    getPhotos() {
-      // Check if the string searched is not only spaces
-      if (this.$refs.search.value.trim()) {
-        let query = this.$refs.search.value.trim();
-        // Search parameter for making the api call
-        const param = {
-          query,
-        };
-        // Reset searched parameters
-        this.searchingFor = "";
-        this.searchedFor = "";
-        // Set loading state when making API call
-        this.loading = true;
-        eventBus.$emit("loading", true);
-        this.searchingFor = this.$refs.search.value;
+    getPhotos: debounce(
+      function () {
+        // Check if the string searched is not only spaces
+        if (this.$refs.search.value.trim()) {
+          let query = this.$refs.search.value.trim();
+          // Search parameter for making the api call
+          const param = {
+            query,
+          };
+          // Reset searched parameters
+          this.searchingFor = "";
+          this.searchedFor = "";
+          // Set loading state when making API call
+          this.loading = true;
+          eventBus.$emit("loading", true);
+          this.searchingFor = this.$refs.search.value;
 
-        //For "this" to be scoped in the function below
-        let that = this;
+          //For "this" to be scoped in the function below
+          let that = this;
 
-        // Search photos
-        searchPhotos(param)
-          .then((res) => {
-            that.unsplashData = res.results;
-            eventBus.$emit("unsplashData", that.unsplashData);
-            that.loading = false;
-            eventBus.$emit("loading", false);
-            that.searchingFor = "";
-            that.searchedFor = query;
-          })
-          .catch(() => {
-            that.searchingFor = "";
-            that.searchedFor = "";
-            that.loading = false;
-            that.unsplashData = null;
-            eventBus.$emit("unsplashData", that.unsplashData);
-            eventBus.$emit("loading", false);
-          });
-      }
-    },
+          // Search photos
+          searchPhotos(param)
+            .then((res) => {
+              that.unsplashData = res.results;
+              eventBus.$emit("unsplashData", that.unsplashData);
+              that.loading = false;
+              eventBus.$emit("loading", false);
+              that.searchingFor = "";
+              that.searchedFor = query;
+            })
+            .catch(() => {
+              that.searchingFor = "";
+              that.searchedFor = "";
+              that.loading = false;
+              that.unsplashData = null;
+              eventBus.$emit("unsplashData", that.unsplashData);
+              eventBus.$emit("loading", false);
+            });
+        }
+      },
+      1500,
+      { leading: true, trailing: false }
+    ),
   },
 
   mounted() {
