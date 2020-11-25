@@ -69,6 +69,7 @@
 import SkeletonLoader from "@/components/Loader//SkeletonLoader.vue";
 import ImageItem from "@/components/ImageItem.vue";
 import ImageModal from "@/components/Modal/ImageModal.vue";
+import { mapGetters } from "vuex";
 
 // Config
 export default {
@@ -82,12 +83,7 @@ export default {
     ImageItem,
   },
   computed: {
-    loading() {
-      return this.$store.state.loading;
-    },
-    unsplashData() {
-      return this.$store.state.unsplashData;
-    },
+    ...mapGetters(["loading", "unsplashData"]),
   },
   methods: {
     showModal() {

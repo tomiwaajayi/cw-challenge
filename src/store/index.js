@@ -5,12 +5,14 @@ import { searchPhotos } from '@/services/unsplash.js';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+	//
 	state: {
 		loading: true,
 		searchingFor: '',
 		searchedFor: '',
 		unsplashData: null,
 	},
+
 	mutations: {
 		setLoadingStatus(state, payload) {
 			state.loading = payload;
@@ -66,6 +68,21 @@ export const store = new Vuex.Store({
 					context.commit('setUnsplashData', null);
 					context.commit('setLoadingStatus', false);
 				});
+		},
+	},
+
+	getters: {
+		searchingFor(state) {
+			return state.searchingFor;
+		},
+		searchedFor(state) {
+			return state.searchedFor;
+		},
+		loading(state) {
+			return state.loading;
+		},
+		unsplashData(state) {
+			return state.unsplashData;
 		},
 	},
 });

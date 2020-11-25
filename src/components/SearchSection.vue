@@ -13,6 +13,7 @@
         @input="searchOnInput"
       />
     </form>
+
     <!-- You are searching for "search-parameter" -->
     <div class="result-text" v-if="searchingFor">
       <p>
@@ -33,14 +34,18 @@
 
 <script>
 // IMPORTS
-import { mapActions } from "vuex";
-// Import loadash.debounce
+import { mapActions, mapGetters } from "vuex";
 import { debounce } from "lodash";
 export default {
   data: () => ({
     //search query
     query: "",
   }),
+
+  mounted() {
+    // Get latest African images on page load
+    this.$store.dispatch("getPhotosOnLoad");
+  },
   methods: {
     ...mapActions(["getPhotos", "getPhotosOnLoad"]),
     getPhotos: debounce(
@@ -57,19 +62,8 @@ export default {
       }
     }, 1500),
   },
-
-  mounted() {
-    // Get latest African images on page load
-    this.$store.dispatch("getPhotosOnLoad");
-  },
-
   computed: {
-    searchingFor() {
-      return this.$store.state.searchingFor;
-    },
-    searchedFor() {
-      return this.$store.state.searchedFor;
-    },
+    ...mapGetters(["searchingFor", "searchedFor"]),
   },
 };
 </script>
