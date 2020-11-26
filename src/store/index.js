@@ -11,6 +11,8 @@ export const store = new Vuex.Store({
 		searchingFor: '',
 		searchedFor: '',
 		unsplashData: null,
+		selectedImage: {},
+		isModalVisible: false,
 	},
 
 	mutations: {
@@ -25,6 +27,12 @@ export const store = new Vuex.Store({
 		},
 		setUnsplashData(state, payload) {
 			state.unsplashData = payload;
+		},
+		setIsModalVisible(state, payload) {
+			state.isModalVisible = payload;
+		},
+		setSelectedImage(state, id) {
+			state.selectedImage = state.unsplashData.find((el) => el.id === id);
 		},
 	},
 
@@ -69,6 +77,11 @@ export const store = new Vuex.Store({
 					context.commit('setLoadingStatus', false);
 				});
 		},
+
+		toggleModal(context, id) {
+			context.commit('setSelectedImage', id);
+			context.commit('setIsModalVisible', true);
+		},
 	},
 
 	getters: {
@@ -83,6 +96,12 @@ export const store = new Vuex.Store({
 		},
 		unsplashData(state) {
 			return state.unsplashData;
+		},
+		isModalVisible(state) {
+			return state.isModalVisible;
+		},
+		selectedImage(state) {
+			return state.selectedImage;
 		},
 	},
 });

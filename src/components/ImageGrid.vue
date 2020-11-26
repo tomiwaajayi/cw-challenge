@@ -21,8 +21,8 @@
           <div class="img-overlay"></div>
           <!-- Image Component with lazy load directive to lazy load the images -->
           <image-item
-            :imgUrl="data.urls.small"
-            :imgAlt="
+            :imageUrl="data.urls.small"
+            :imageAlt="
               data.alt_description ? data.alt_description : 'Somewhere on earth'
             "
           ></image-item>
@@ -57,47 +57,26 @@
         "Please check back in an hour"
       </p>
     </div>
-
-    <!-- Image Modal  -->
-    <image-modal v-if="isModalVisible" @close="closeModal" :imgData="imgData">
-    </image-modal>
   </section>
 </template>
 
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import SkeletonLoader from "@/components/Loader//SkeletonLoader.vue";
 import ImageItem from "@/components/ImageItem.vue";
-import ImageModal from "@/components/Modal/ImageModal.vue";
-import { mapGetters } from "vuex";
 
 // Config
 export default {
-  data: () => ({
-    isModalVisible: false,
-    imgData: "",
-  }),
   components: {
     SkeletonLoader,
-    ImageModal,
     ImageItem,
   },
   computed: {
     ...mapGetters(["loading", "unsplashData"]),
   },
   methods: {
-    showModal() {
-      this.isModalVisible = true;
-    },
-    closeModal() {
-      this.isModalVisible = false;
-    },
-
-    toggleModal(id) {
-      const selectedImg = this.unsplashData.find((el) => el.id === id);
-      this.imgData = { ...selectedImg };
-      this.showModal();
-    },
+    ...mapActions(["toggleModal"]),
   },
 };
 </script>

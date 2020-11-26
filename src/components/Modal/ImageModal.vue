@@ -3,7 +3,7 @@
   <!-- modal-transition component -->
   <transition name="modal-fade">
     <!-- Modal backfrop -->
-    <div class="modal-backdrop" @click.stop="close" v-if="imgData">
+    <div class="modal-backdrop" @click.stop="close" v-if="imageData">
       <div
         class="modal"
         role="dialog"
@@ -24,10 +24,10 @@
         <section class="modal-body" id="modalDescription">
           <!-- Image Component with lazy-load directive to lazy load all the images -->
           <image-item
-            :imgUrl="imgData.urls.full"
-            :imgAlt="
-              imgData.alt_description
-                ? imgData.alt_description
+            :imageUrl="imageData.urls.full"
+            :imageAlt="
+              imageData.alt_description
+                ? imageData.alt_description
                 : 'Somewhere on earth'
             "
           ></image-item>
@@ -36,14 +36,14 @@
 
         <!-- Modal Footer -->
         <footer class="modal-footer">
-          <h3 class="img-author">
-            {{ imgData.user.first_name }}
-            {{ imgData.user.last_name }}
+          <h3 class="image-author">
+            {{ imageData.user.first_name }}
+            {{ imageData.user.last_name }}
           </h3>
-          <p class="img-location">
+          <p class="image-location">
             {{
-              imgData.user.location
-                ? imgData.user.location
+              imageData.user.location
+                ? imageData.user.location
                 : "Somewhere on earth"
             }}
           </p>
@@ -60,7 +60,7 @@ export default {
   components: { ImageItem },
   name: "image-modal",
   props: {
-    imgData: {
+    imageData: {
       type: Object,
       required: true,
     },
@@ -108,7 +108,7 @@ export default {
       border-top-right-radius: 10px;
     }
 
-    .modal-body img {
+    .modal-body image {
       object-fit: cover;
       width: 100%;
       height: 100%;
@@ -122,13 +122,13 @@ export default {
       border-top: 1px solid #eeeeee;
       justify-content: center;
     }
-    .img-author {
+    .image-author {
       font-size: 1.3rem;
       line-height: 120%;
       color: $primary-color;
     }
 
-    .img-location {
+    .image-location {
       margin-top: 0.5rem;
       color: $secondary-color;
     }
@@ -154,11 +154,11 @@ export default {
       width: 85%;
       height: 50%;
 
-      .img-author {
+      .image-author {
         font-size: 1rem;
       }
 
-      .img-location {
+      .image-location {
         margin-top: 0.25rem;
         font-size: 0.7rem;
         color: $primary-color;
@@ -173,11 +173,11 @@ export default {
       width: 60%;
       height: 85%;
 
-      .img-author {
+      .image-author {
         font-size: 1rem;
       }
 
-      .img-location {
+      .image-location {
         margin-top: 0.25rem;
         font-size: 0.7rem;
         color: $primary-color;

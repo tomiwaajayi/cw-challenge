@@ -1,7 +1,7 @@
 <template>
   <figure v-lazyload class="image__wrapper">
     <image-spinner class="image__spinner" />
-    <img class="image__item" :data-url="imgUrl" :alt="imgAlt" />
+    <img class="image__item" :data-url="imageUrl" :alt="imageAlt" />
   </figure>
 </template>
 
@@ -15,11 +15,11 @@ export default {
     ImageSpinner,
   },
   props: {
-    imgUrl: {
+    imageUrl: {
       type: String,
       required: true,
     },
-    imgAlt: {
+    imageAlt: {
       type: String,
       required: true,
     },
