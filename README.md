@@ -42,7 +42,7 @@ It's a component without any functionality. It's works as a loader and the loadi
 
 ##### 4. The modal component (ImageModal.vue)
 - It's the modal component that pops up when an image in the grid is clicked. It's shows the image at maximum resolution alongside the author and the location. It can be toggled off (closed) by clicking anywhere on the screen.
-This component is directly imported into the ImageGrid.vue component. When an image on the grid is clicked, it passes it's ID into the function that triggers the modal and it's this information that the modal uses to get the image, author and location specific to the image clicked.
+This component is imported directly into the App.vue component and not the ImageGrid.vue component for accessibility reasons. When an image on the grid is clicked, it passes it's ID into the function that triggers the modal, and it's this information that the modal uses to get the image, author and location specific to the image clicked.
 
 #### 5. The component for lazy loading Images (ImageItem.vue)
 - This is the component that recieves the url and alt-text of the image to be loaded as props and lazyloads the images with the "lazy-load" directive.
@@ -65,7 +65,4 @@ This component is directly imported into the ImageGrid.vue component. When an im
 3. There is a lazy-load fuction in the directives folder which sets up the "lazy-load" directive to be used in the ImageItem.vue component. The directive is declared globally in the main.js file.
 4. I used VueX to manage the global state in the application
 5. In the services folder, the unsplash.js file is where I have defined my GET function for searching images based on the search parameter. The function is then used in VueX action to search for the images
-6. On app load, images are fecthed from the API with "African" as the search query and "latest" as the search filter. After app load, all images searched are filtered by "most relevant".
-7. Images only load when they are visible in the viewport. (this is handled by the "lazy-load" directive)
-8. PRETTY MUCH ALL EDGE CASES ARE TAKEN CARE OF :)
-
+6. On app load, images are fecthed from the API with "African" as the search query and "latest" as the search filter. After app load, all images searched are filter
