@@ -2,10 +2,10 @@
 import axios from 'axios';
 
 // Prod. APIKEY
-const accessKey = 'iGEDdqIrMOagEXLKKdciqlSQj7JKuy5UXnM2Ki4xu48';
+const accessKey = 'T5rmM8iDNHj54SdQGvDqV-QAghuSOiY7pS2JT-STZdo';
 
 // Local API key
-// const accessKey = 'T5rmM8iDNHj54SdQGvDqV-QAghuSOiY7pS2JT-STZdo';
+// const accessKey = 'iGEDdqIrMOagEXLKKdciqlSQj7JKuy5UXnM2Ki4xu48';
 
 // Unsplash Base URL
 const apiEndpoint = 'https://api.unsplash.com/';
@@ -15,20 +15,21 @@ const searchPhotoEndpoint = `${apiEndpoint}search/photos`;
 
 // Search photos
 export const searchPhotos = async (param) => {
-	try {
-		const res = await axios.get(searchPhotoEndpoint, {
+	const result = await axios
+		.get(searchPhotoEndpoint, {
 			// Search Parameters
 			params: {
 				client_id: accessKey,
 				per_page: 8,
 				...param,
 			},
+		})
+		.then((res) => {
+			return res.data;
+		})
+		.catch((err) => {
+			throw err.response;
 		});
 
-		if (res.status == 200) return res.data;
-		else return null;
-	} catch (err) {
-		console.error(err);
-		return null;
-	}
+	return result;
 };

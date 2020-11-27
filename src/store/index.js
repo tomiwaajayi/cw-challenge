@@ -10,9 +10,10 @@ export const store = new Vuex.Store({
 		loading: true,
 		searchingFor: '',
 		searchedFor: '',
-		unsplashData: null,
+		unsplashData: '',
 		selectedImage: {},
 		isModalVisible: false,
+		errorMessage: '',
 	},
 
 	mutations: {
@@ -27,6 +28,9 @@ export const store = new Vuex.Store({
 		},
 		setUnsplashData(state, payload) {
 			state.unsplashData = payload;
+		},
+		setErrorMessage(state, payload) {
+			state.errorMessage = payload;
 		},
 		setIsModalVisible(state, payload) {
 			state.isModalVisible = payload;
@@ -51,15 +55,17 @@ export const store = new Vuex.Store({
 				// Search photos
 				searchPhotos(param)
 					.then((res) => {
+						context.commit('setErrorMessage', '');
 						context.commit('setUnsplashData', res.results);
 						context.commit('setLoadingStatus', false);
 						context.commit('setSearchingFor', '');
 						context.commit('setSearchedFor', query);
 					})
-					.catch(() => {
+					.catch((err) => {
 						context.commit('setSearchingFor', '');
 						context.commit('setSearchedFor', '');
-						context.commit('setUnsplashData', null);
+						context.commit('setUnsplashData', '');
+						context.commit('setErrorMessage', err);
 						context.commit('setLoadingStatus', false);
 					});
 			}
@@ -69,11 +75,13 @@ export const store = new Vuex.Store({
 		getPhotosOnLoad(context) {
 			searchPhotos({ query: 'African', order_by: 'latest' })
 				.then((res) => {
+					context.commit('setErrorMessage', '');
 					context.commit('setUnsplashData', res.results);
 					context.commit('setLoadingStatus', false);
 				})
-				.catch(() => {
-					context.commit('setUnsplashData', null);
+				.catch((err) => {
+					context.commit('setUnsplashData', '');
+					context.commit('setErrorMessage', err);
 					context.commit('setLoadingStatus', false);
 				});
 		},
@@ -102,6 +110,9 @@ export const store = new Vuex.Store({
 		},
 		selectedImage(state) {
 			return state.selectedImage;
+		},
+		errorMessage(state) {
+			return state.errorMessage;
 		},
 	},
 });
