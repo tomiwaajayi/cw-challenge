@@ -3,7 +3,19 @@
   <!-- modal-transition component -->
   <transition name="modal-fade">
     <!-- Modal backfrop -->
-    <div class="modal-backdrop" @click.stop="close" v-if="imageData">
+    <div
+      class="modal-backdrop"
+      v-if="imageData"
+    >
+
+      <!-- Click background to close -->
+      <div
+        class="modal-overlay"
+        @click="close"
+      >
+      </div>
+
+      <!-- Modal -->
       <div
         class="modal"
         role="dialog"
@@ -21,7 +33,10 @@
         </button>
 
         <!-- Modal Body (Image) -->
-        <section class="modal-body" id="modalDescription">
+        <section
+          class="modal-body"
+          id="modalDescription"
+        >
           <!-- Image Component with lazy-load directive to lazy load all the images -->
           <image-item
             :imageUrl="imageData.urls.full"
@@ -83,11 +98,19 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.531);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5;
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.531);
+    z-index: 5;
+  }
 
   .modal {
     background: #ffffff;
@@ -97,7 +120,7 @@ export default {
     height: 85%;
     border-radius: 10px;
     position: relative;
-    z-index: 100;
+    z-index: 10;
 
     // Modal Body
     .modal-body {

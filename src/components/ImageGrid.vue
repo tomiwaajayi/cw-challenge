@@ -1,8 +1,15 @@
 <template>
   <section class="image-grid">
     <!-- Skeleton loader if data is being fetched (loading = true) -->
-    <div class="grid-wrapper" v-if="loading">
-      <div class="image" v-for="num in 8" :key="num">
+    <div
+      class="grid-wrapper"
+      v-if="loading"
+    >
+      <div
+        class="image"
+        v-for="num in 8"
+        :key="num"
+      >
         <skeleton-loader></skeleton-loader>
       </div>
     </div>
@@ -10,7 +17,10 @@
     <!-- Show this div as soon as loading = false and there is no request erro -->
     <div v-if="!loading && unsplashData">
       <!-- If the returned data array > 0 i.e if at least one image is returned -->
-      <div class="grid-wrapper" v-if="unsplashData.length">
+      <div
+        class="grid-wrapper"
+        v-if="unsplashData.length"
+      >
         <div
           class="image animate-grid"
           v-for="data in unsplashData"
@@ -39,7 +49,10 @@
       </div>
 
       <!-- Else, if the returned data arrar is empty, i.e "no images found", display this text -->
-      <div v-else-if="!unsplashData.length" class="no-result">
+      <div
+        v-else-if="!unsplashData.length"
+        class="no-result"
+      >
         <p>
           <!-- With face-palm emoji -->
           <span> Ooops ! &#129318;&#127998;</span><br />
@@ -49,12 +62,18 @@
     </div>
 
     <!-- Else, if an error is encountered -->
-    <div v-if="errorMessage" class="no-result">
+    <div
+      v-if="errorMessage"
+      class="no-result"
+    >
       <div>
         <span> Error {{ errorMessage.status }} &#128543; </span><br />
 
         <div v-if="errorMessage.data.errors.length">
-          <div v-for="error in errorMessage.data.errors" :key="error">
+          <div
+            v-for="error in errorMessage.data.errors"
+            :key="error"
+          >
             {{ error }}
           </div>
         </div>
@@ -116,7 +135,7 @@ export default {
         rgba(0, 0, 0, 0) 100%
       );
       opacity: 0.8;
-      z-index: 100;
+      z-index: 5;
     }
 
     // Styling passed into the ImageItem-Component
@@ -143,10 +162,9 @@ export default {
     position: absolute;
     bottom: 20px;
     left: 16px;
-    z-index: 5;
     color: #fff;
     font-size: 1rem;
-    z-index: 200;
+    z-index: 10;
   }
 
   .bottom-left p {

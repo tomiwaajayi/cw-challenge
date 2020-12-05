@@ -1,9 +1,16 @@
 <template>
   <section class="search-component">
     <!-- Search Form  -->
-    <form class="form" @submit.prevent="getPhotos">
+    <form
+      class="form"
+      @submit.prevent="getPhotos"
+    >
       <!-- Search Icon -->
-      <img class="search-icon" src="@/assets/svg/search.svg" alt="" />
+      <img
+        class="search-icon"
+        src="@/assets/svg/search.svg"
+        alt=""
+      />
       <!-- Search Bar -->
       <input
         type="text"
@@ -15,7 +22,10 @@
     </form>
 
     <!-- You are searching for "search-parameter" -->
-    <div class="result-text" v-if="searchingFor">
+    <div
+      class="result-text"
+      v-if="searchingFor"
+    >
       <p>
         Searching for
         <span class="search-key">"{{ searchingFor }}"</span>
@@ -23,7 +33,10 @@
     </div>
 
     <!-- You searched for "Search-parameter" -->
-    <div class="result-text" v-if="searchedFor">
+    <div
+      class="result-text"
+      v-if="searchedFor"
+    >
       <p>
         Search Results for
         <span class="search-key">"{{ searchedFor }}"</span>
@@ -34,7 +47,7 @@
 
 <script>
 // IMPORTS
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import { debounce } from "lodash";
 export default {
   data: () => ({
@@ -47,7 +60,6 @@ export default {
     this.$store.dispatch("getPhotosOnLoad");
   },
   methods: {
-    ...mapActions(["getPhotos", "getPhotosOnLoad"]),
     getPhotos: debounce(
       function () {
         this.$store.dispatch("getPhotos", this.query);

@@ -7,7 +7,7 @@
     <!-- Image Modal -->
     <image-modal
       v-if="isModalVisible"
-      @close="setIsModalVisible(false)"
+      @close="SET_IS_MODAL_VISIBLE(false)"
       :imageData="selectedImage"
     >
     </image-modal>
@@ -16,7 +16,7 @@
 
 <script>
 // Imports
-import { mapActions, mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import SearchSection from "@/components/SearchSection.vue";
 import ImageGrid from "@/components/ImageGrid.vue";
 import ImageModal from "@/components/Modal/ImageModal.vue";
@@ -33,8 +33,7 @@ export default {
     ...mapGetters(["selectedImage", "isModalVisible"]),
   },
   methods: {
-    ...mapActions(["setIsModalVisible"]),
-    ...mapMutations(["setIsModalVisible"]),
+    ...mapMutations(["SET_IS_MODAL_VISIBLE"]),
   },
 };
 </script>

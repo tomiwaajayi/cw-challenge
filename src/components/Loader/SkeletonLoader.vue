@@ -9,9 +9,6 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
 
 <style lang="scss" scoped>
 .card-skeleton {
@@ -25,8 +22,6 @@ export default {};
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   background: #fff;
-  z-index: 10;
-  opacity: 1;
   border-radius: 10px;
 }
 
@@ -49,7 +44,7 @@ export default {};
 .skeleton-mask {
   background: #e6e6e6;
   position: absolute;
-  z-index: 200;
+  z-index: 5;
 }
 
 .skeleton-mask-1 {
